@@ -35,6 +35,13 @@
   #selectablePlanet .ui-selected { background: #F39814; color: white; }
   #selectablePlanet { list-style-type: none; margin: 0; padding: 0; width: 60%; }
   #selectablePlanet li { margin: 3px; padding: 0.4em; font-size: 1em; height: 18px; }
+  
+  .labelStyle {font-size: 1em; font-weight:bold; font-family:"Times New Roman",Georgia,Serif; margin:5px}
+  .textStyle {font-size: 1em; font-weight:normal}
+  .statusSuccess {font-size: 1em; color:blue}
+  .statusFailure {font-size: 1em; color:red}
+  .informationTableMount {margin-left: 20px}
+  
 </style>
 <script>
 $(function() {
@@ -73,8 +80,6 @@ $(function() {
 	<ul>
 		<li><a href="#mount_tab"><liferay-ui:message
 					key="label-mount-tab" /></a></li>
-		<li><a href="#ccd_tab"><liferay-ui:message
-					key="label-ccd-tab" /></a></li>
 		<li><a href="#focus_tab"><liferay-ui:message
 					key="label-focus-tab" /></a></li>
 		<li><a href="#catalog_tab"><liferay-ui:message
@@ -152,27 +157,64 @@ $(function() {
 						</div> <!-- Control mount -->
 					</td>
 					<td>
-						<div id="informationMount">
-							<label class="aui-field-label raLabel"> <liferay-ui:message
-									key="label-ra" /> :
-							</label> <label class="status-field status-field-ok"> 14.32445</label>
+						<div class="informationTableMount">
+						<table>
+							<tr>
+								<td>
+									<span class="labelStyle"><liferay-ui:message key="label-mount-ra" /> :</span>
+								</td> 
+								<td>
+									 <span class="textStyle" id="raCoordControl">14.32445</span>
+								</td>
+								<td>
+									<span class="labelStyle"><liferay-ui:message key="label-mount-dec" /> :</span>
+								</td> 
+								<td>
+									 <span class="textStyle" id="decCoordControl">63.645</span>
+								</td>								
+							</tr>
+							<tr>
+								<td>
+									<span class="labelStyle"><liferay-ui:message key="label-mount-epoch" /> :</span>
+								</td>
+								<td colspan="3">
+									<span class="statusSuccess">Loading epoch...</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span class="labelStyle"><liferay-ui:message key="label-mount-status" /> :</span>
+								</td>
+								<td colspan="3">
+									<span class="statusSuccess">Loading status...</span>
+								</td>
+							</tr>
+						</table>
 						</div>
 					</td>
 				</tr>
 			</table>
 		</div>
 	</div>
-	<div id="ccd_tab" class="tab-pane">
-		<p>Doloremque beatae rem voluptate nulla perspiciatis atque
-			laudantium nihil impedit molestiae fuga veritatis quibusdam nam
-			maiores aliquid. Deserunt dolorum quas temporibus enim ex nihil nemo
-			perspiciatis. Nisi deserunt rem id pariatur in nostrum?</p>
-	</div>
 	<div id="focus_tab" class="tab-pane">
-		<p>Aliquid ipsum asperiores alias temporibus autem impedit soluta
-			ut id iure explicabo veritatis consectetur debitis eaque recusandae
-			odit quas nobis maxime saepe. Incidunt amet obcaecati. Ducimus soluta
-			unde repellat laboriosam fuga modi rem itaque!</p>
+		<span class="status-span">
+			<span class="labelStyle"><liferay-ui:message key="label-focuser-status"/>: </span>
+			<span class="statusSuccess">Loading status...</span>
+		</span><br>
+		<span >
+			<input id="moveOut" 
+					name="moveOut"  
+					type="button" 
+					value="<liferay-ui:message key='button-moveOut' />" 
+					onClick=""
+					/>
+			<input 	id="<portlet:namespace />moveIn"
+					name="moveOut"  
+					type="button" 
+					value="<liferay-ui:message key='button-moveIn' />"
+					onClick=""
+					/>
+		</span>
 	</div>
 	<div id="catalog_tab" class="tab-pane">
 		<div id="accordion">
